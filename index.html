@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador Gay</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .contador {
+      background-color: #ffffff;
+      border: 2px solid #dcdcdc;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 20px 30px;
+      margin: 20px;
+      width: 320px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .contador:hover {
+      transform: scale(1.02);
+    }
+
+    .contador strong {
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #1a202c;
+    }
+
+    .contador span {
+      font-size: 2em;
+      color: #2c7be5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contador do Amor ❤️</h1>
+
+  <div class="contador">
+    <strong>Dias desde que nos Beijamos 😘</strong>
+    <span id="contador1"></span>
+  </div>
+
+  <div class="contador">
+    <strong>Dias desde que namoramos 👩‍❤️‍💋‍👨</strong>
+    <span id="contador2"></span>
+  </div>
+
+  <script>
+    const data1 = new Date("2025-01-28");
+    const data2 = new Date("2025-05-17");
+
+    function calcularDiasDesde(data) {
+      const hoje = new Date();
+      hoje.setHours(0, 0, 0, 0);
+      data.setHours(0, 0, 0, 0);
+      const diferenca = hoje - data;
+      return Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    }
+
+    function atualizarContadores() {
+      document.getElementById("contador1").textContent = `${calcularDiasDesde(data1)} dias`;
+      document.getElementById("contador2").textContent = `${calcularDiasDesde(data2)} dias`;
+    }
+
+    atualizarContadores();
+    setInterval(atualizarContadores, 1000 * 60 * 60 * 24);
+  </script>
+
+</body>
+</html>
