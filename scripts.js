@@ -1,7 +1,7 @@
 
 window.addEventListener("DOMContentLoaded", () => {
-  const data1 = new Date("2025-01-28");
-  const data2 = new Date("2025-05-17");
+  const data1 = new Date("2025-01-27");
+  const data2 = new Date("2025-05-18");
   const dataFutura = new Date("2025-08-13"); // altere a data aqui se quiser
 
   function calcularDiasDesde(data) {
@@ -21,9 +21,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function atualizarContadores() {
-    document.getElementById("contador1").textContent = `${calcularDiasDesde(data1)} dias`;
-    document.getElementById("contador2").textContent = `${calcularDiasDesde(data2)} dias`;
-    document.getElementById("contador3").textContent = `${calcularDiasFaltando(dataFutura)} dias`;
+    document.getElementById("contador1").textContent = `${calcularDiasDesde(data1)} dias - 1`;
+    document.getElementById("contador2").textContent = `${calcularDiasDesde(data2)} dias - 1`;
+    document.getElementById("contador3").textContent = `${calcularDiasFaltando(dataFutura)} dias + 1`;
   }
 
   atualizarContadores();
