@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
     const diferenca = hoje - data;
-    return Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    return Math.floor(diferenca / (1000 * 60 * 60 * 24) - 1);
   }
 
   function calcularDiasFaltando(data) {
@@ -17,13 +17,13 @@ window.addEventListener("DOMContentLoaded", () => {
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
     const diferenca = data - hoje;
-    return Math.max(Math.ceil(diferenca / (1000 * 60 * 60 * 24)), 0);
+    return Math.max(Math.ceil(diferenca / (1000 * 60 * 60 * 24) + 1), 0);
   }
 
   function atualizarContadores() {
-    document.getElementById("contador1").textContent = `${calcularDiasDesde(data1)} dias - 1`;
-    document.getElementById("contador2").textContent = `${calcularDiasDesde(data2)} dias - 1`;
-    document.getElementById("contador3").textContent = `${calcularDiasFaltando(dataFutura)} dias + 1`;
+    document.getElementById("contador1").textContent = `${calcularDiasDesde(data1)} dias`;
+    document.getElementById("contador2").textContent = `${calcularDiasDesde(data2)} dias`;
+    document.getElementById("contador3").textContent = `${calcularDiasFaltando(dataFutura)} dias`;
   }
 
   atualizarContadores();
