@@ -1,5 +1,5 @@
-
 window.addEventListener("DOMContentLoaded", () => {
+  // --- Contadores existentes ---
   const data1 = new Date("2025-01-28");
   const data2 = new Date("2025-05-17");
   const dataFutura = new Date("2025-07-20"); // altere a data aqui se quiser
@@ -28,30 +28,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
   atualizarContadores();
   setInterval(atualizarContadores, 1000 * 60 * 60 * 24);
-});
 
-function pessoaEspecialHoje() {
+  // --- Pessoa especial hoje ---
+  const el = document.getElementById("pessoaEspecial");
+  if (el) {
     const hoje = new Date();
-
-    // pega o primeiro dia do ano
     const inicioAno = new Date(hoje.getFullYear(), 0, 1);
-
-    // calcula diferença em dias desde o início do ano
     const diff = Math.floor((hoje - inicioAno) / (1000 * 60 * 60 * 24));
+    const pessoaEspecial = diff % 2 === 0 ? "Carouu 💗💖" : "Isaac ❤️❤️";
 
-    // se diff for par → você, se ímpar → ela
-    let pessoaEspecial = "";
-    if (diff % 2 === 0) {
-        pessoaEspecial = "Carouu 💗💖";
-    } else {
-        pessoaEspecial = "Isaac ❤️❤️";
-    }
-
-    document.getElementById("pessoaEspecial").innerHTML = `
-        <strong>A pessoa especial de hoje é:</strong>
-        <span>${pessoaEspecial}</span>
+    el.innerHTML = `
+      <strong>A pessoa especial de hoje é:</strong>
+      <span>${pessoaEspecial}</span>
     `;
-}
-
-// executa quando a página carregar
-window.onload = pessoaEspecialHoje;
+  }
+});
