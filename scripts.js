@@ -1,15 +1,15 @@
 
 window.addEventListener("DOMContentLoaded", () => {
-  const data1 = new Date("2025-01-27");
-  const data2 = new Date("2025-05-18");
-  const dataFutura = new Date("2025-08-13"); // altere a data aqui se quiser
+  const data1 = new Date("2025-01-28");
+  const data2 = new Date("2025-05-17");
+  const dataFutura = new Date("2025-07-20"); // altere a data aqui se quiser
 
   function calcularDiasDesde(data) {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
     const diferenca = hoje - data;
-    return Math.floor(diferenca / (1000 * 60 * 60 * 24) - 1);
+    return Math.floor(diferenca / (1000 * 60 * 60 * 24));
   }
 
   function calcularDiasFaltando(data) {
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
     const diferenca = data - hoje;
-    return Math.max(Math.ceil(diferenca / (1000 * 60 * 60 * 24) + 1), 0);
+    return Math.max(Math.ceil(diferenca / (1000 * 60 * 60 * 24)), 0);
   }
 
   function atualizarContadores() {
@@ -30,58 +30,28 @@ window.addEventListener("DOMContentLoaded", () => {
   setInterval(atualizarContadores, 1000 * 60 * 60 * 24);
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  const botoesContainer = document.querySelector('.botoes-navegacao');
-  if (!botoesContainer) return;
+function pessoaEspecialHoje() {
+    const hoje = new Date();
 
-  const botoes = botoesContainer.querySelectorAll('button');
+    // pega o primeiro dia do ano
+    const inicioAno = new Date(hoje.getFullYear(), 0, 1);
 
-  // Esconde todos os botões inicialmente
-  botoes.forEach(botao => {
-    botao.style.display = 'none';
-  });
+    // calcula diferença em dias desde o início do ano
+    const diff = Math.floor((hoje - inicioAno) / (1000 * 60 * 60 * 24));
 
-  // Função para verificar e mostrar os botões conforme a hora
-  function atualizarBotoes() {
-    const agora = new Date();
-
-    // Verifica se é 05 de julho (mes é zero-based: 0=jan, 6=julho)
-    if (agora.getDate() === 5 && agora.getMonth() === 6) {
-      const horas = agora.getHours();
-
-      // Horários para aparecer os botões na mesma ordem que os botões
-      const horarios = [8, 12, 15, 19, 0];
-
-      // Mostrar botões que já passaram do horário
-      botoes.forEach((botao, i) => {
-        // Caso especial para o 0h (meia-noite) do dia 06/07
-        if (horarios[i] === 0) {
-          // Mostrar só se for 06/07 e hora >= 0
-          if ((agora.getDate() === 6 && agora.getMonth() === 6) && horas >= 0) {
-            botao.style.display = 'inline-block';
-          } else {
-            botao.style.display = 'none';
-          }
-        } else {
-          // Para os outros horários no dia 05/07
-          if (horas >= horarios[i]) {
-            botao.style.display = 'inline-block';
-          } else {
-            botao.style.display = 'none';
-          }
-        }
-      });
-
+    // se diff for par → você, se ímpar → ela
+    let pessoaEspecial = "";
+    if (diff % 2 === 0) {
+        pessoaEspecial = "Carouu 💗💖";
     } else {
-      // Fora do dia 05/07 e 06/07 (para 0h) esconde tudo
-      botoes.forEach(botao => {
-        botao.style.display = 'none';
-      });
+        pessoaEspecial = "Isaac ❤️❤️";
     }
-  }
 
-  atualizarBotoes();
+    document.getElementById("pessoaEspecial").innerHTML = `
+        <strong>A pessoa especial de hoje é:</strong>
+        <span>${pessoaEspecial}</span>
+    `;
+}
 
-  // Atualiza a cada minuto, para o botão aparecer assim que o horário bater
-  setInterval(atualizarBotoes, 60 * 1000);
-});
+// executa quando a página carregar
+window.onload = pessoaEspecialHoje;
