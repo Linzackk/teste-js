@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
-    const diferenca = hoje - data;
+    const diferenca = hoje - data - 1;
     return Math.floor(diferenca / (1000 * 60 * 60 * 24));
   }
 
@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     data.setHours(0, 0, 0, 0);
-    const diferenca = data - hoje;
+    const diferenca = data - hoje + 1;
     return Math.max(Math.ceil(diferenca / (1000 * 60 * 60 * 24)), 0);
   }
 
