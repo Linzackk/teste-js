@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // --- Contadores existentes ---
   const data1 = new Date("2025-01-28");
   const data2 = new Date("2025-05-17");
-  const dataFutura = new Date("2025-11-28"); // altere a data aqui se quiser
+  const dataFutura = new Date("2025-12-13"); // altere a data aqui se quiser
 
   function calcularDiasDesde(data) {
     const hoje = new Date();
